@@ -233,7 +233,7 @@ class WeatherUnderground {
         return request.close();
       })
       .then((HttpClientResponse response) {
-        response.transform(new StringDecoder()).toList().then((data) {          
+        new StringDecoder().bind(response).toList().then((data) {          
           String body = data.join('');
           var parsedList = parse(body);
           completer.complete(parsedList['RESULTS']);
@@ -254,7 +254,7 @@ class WeatherUnderground {
         return request.close();
       })
       .then((HttpClientResponse response) {
-        response.transform(new StringDecoder()).toList().then((data) {          
+        new StringDecoder().bind(response).toList().then((data) {          
           String body = data.join('');
           var parsedList = parse(body);
           if(parsedList['response']['error'] != null) {
